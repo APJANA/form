@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation</title>
+  <script>
+    function validateForm() {
+      // Validation for First Name and Last Name
+      var firstName = document.getElementById('first-name').value;
+      var lastName = document.getElementById('last-name').value;
+      var nameRegex = /^[a-zA-Z]{2,10}$/;
+
+      if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+        alert('First Name and Last Name must have 2 to 10 alphabetical characters without numbers.');
+        return false;
+      }
+
+      // Validation for Mobile Number
+      var mobileNumber = document.getElementById('mobile-number').value;
+      var mobileRegex = /^\d{10}$/;
+
+      if (!mobileRegex.test(mobileNumber)) {
+        alert('Mobile number should be 10 digits.');
+        return false;
+      }
+
+      // Validation for Age
+      var birthdate = document.getElementById('birthdate').value;
+      var today = new Date();
+      var birthdateObj = new Date(birthdate);
+      var age = today.getFullYear() - birthdateObj.getFullYear();
+
+      if (age < 18) {
+        alert('You must be 18 years or older to submit the form.');
+        return false;
+      }
+
+      // Display entered person's details
+      var fullName = firstName + ' ' + lastName;
+      var email = document.getElementById('email').value;
+
+      alert('Full Name: ' + fullName + '\nAge: ' + age + '\nEmail: ' + email + '\nMobile Number: ' + mobileNumber);
+
+      
+      return true;
+    }
+  </script>
+    
+  <style>   
+    body{
+        margin-left: 100px;
+    }
+
+    .container{
+        margin-left: 20px;
+        
+    }
+    
+    div{
+        margin-bottom: 10px;
+    }
+
+
+  </style>
+</head>
+<body>
+<h1> HTML Form</h1>
+  <form onsubmit="return validateForm()">
+   <div class="container">
+        <div>
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" required>
+        </div>
+        <div>
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" required>
+        </div>
+    
+        <div>
+            <label for="birthdate">Birthdate:</label>
+            <input type="date" id="birthdate" name="birthdate" required>
+        </div>
+    
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+    
+        <div>
+            <label for="mobile-number">Mobile Number:</label>
+            <input type="text" id="mobile-number" name="mobile-number" required>
+        </div>
+    
+</div>
+<div>
+    <button type="submit">SUBMIT</button>
+    <button type="reset">RESET</button>
+</div>
+    
+  </form>
+
+</body>
+</html>
